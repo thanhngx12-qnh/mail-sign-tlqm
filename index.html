@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo Chữ Ký Email Công ty Phú Anh</title>
+    <title>Tạo Chữ Ký Email - Phú Anh Logistics V2.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,195 +12,85 @@
             --bg-color: #f0f4f8;
             --text-color: #333;
             --border-color: #e1e5e9;
-            --card-bg: #f8fbfe; /* Màu nền cho các thẻ input */
-            --card-border: #d0e2fa; /* Màu viền cho các thẻ input */
+            --card-bg: #f8fbfe;
+            --card-border: #d0e2fa;
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        /* Container chính */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-
-        /* Wrapper cho bố cục 2 cột sử dụng Flexbox */
-        .content-wrapper {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-        }
-
-        .column-left, .column-right {
-            flex: 1;
-        }
-
-        /* --- STYLES MỚI CHO CÁC THẺ INPUT (ĐỒNG BỘ) --- */
-        .form-section-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            margin-top: 25px;
-            color: #555;
-        }
+        body { font-family: 'Roboto', sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); margin: 0; padding: 20px; }
+        h1 { color: var(--primary-color); text-align: center; margin-bottom: 30px; font-weight: 700; }
+        .main-container { max-width: 1200px; margin: 0 auto; background-color: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .content-wrapper { display: flex; gap: 40px; align-items: flex-start; }
+        .column-left, .column-right { flex: 1; }
         
-        /* Class mới để bọc các nhóm input lại cho đẹp */
-        .input-card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-            margin-bottom: 20px;
-        }
+        .form-section-title { font-size: 18px; font-weight: 600; margin-bottom: 15px; margin-top: 25px; color: #555; }
+        .input-card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--card-border); margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .input-card .form-group:last-child { margin-bottom: 0; }
+        .input-card label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--primary-color); }
+        .helper-text { font-size: 13px; color: #666; margin-top: -4px; margin-bottom: 8px; }
 
-        .form-group {
-            margin-bottom: 20px;
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: 100%; padding: 12px 15px; border: 2px solid #e1e5e9; border-radius: 8px;
+            box-sizing: border-box; font-family: inherit; font-size: 15px; transition: all 0.3s ease; background-color: #fff;
         }
+        input:focus, select:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 3px rgba(26,115,232,0.1); }
+
+        /* Style cho checkbox WeChat */
+        .checkbox-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; }
+        .checkbox-wrapper input { width: auto; margin: 0; cursor: pointer; transform: scale(1.2); }
+        .checkbox-wrapper span { font-weight: 500; color: #333; }
+
+        /* Preview Column */
+        .column-right { position: sticky; top: 20px; }
+        h2.preview-title { border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 0; color: var(--text-color); font-size: 20px; }
+        .signature-preview-container { padding: 25px; border-radius: 12px; background-color: #fff; margin-top: 20px; border: 1px solid #eee; }
+        .placeholder-text { color: #bbb !important; font-style: italic; }
         
-        /* Loại bỏ margin bottom cho form-group cuối cùng trong card */
-        .input-card .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Label trong card có màu xanh chủ đạo */
-        .input-card label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--primary-color); 
-        }
-
-        .helper-text {
-            font-size: 13px;
-            color: #666;
-            margin-top: -4px;
-            margin-bottom: 8px;
-        }
-
-        input[type="text"], input[type="email"], input[type="tel"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            background-color: #fff;
-        }
-
-        input:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(26,115,232,0.1);
-        }
-
-        /* --- STYLES CHO CỘT PHẢI (PREVIEW) --- */
-        .column-right {
-            position: sticky;
-            top: 20px;
-        }
-
-        h2.preview-title {
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-            color: var(--text-color);
-            font-size: 20px;
-        }
-
-        .signature-preview-container {
-            border: 2px dashed var(--border-color);
-            padding: 25px;
-            border-radius: 12px;
-            background-color: #fff;
-            margin-top: 20px;
-        }
-
-        .placeholder-text {
-            color: #bbb !important;
-            font-style: italic;
-        }
-
         .copy-button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            display: block;
-            width: 100%;
-            margin-top: 25px;
-            transition: background-color 0.2s, transform 0.1s;
-            box-shadow: 0 4px 6px rgba(26,115,232,0.2);
+            background-color: var(--primary-color); color: white; padding: 15px 30px; border: none; border-radius: 8px;
+            cursor: pointer; font-size: 18px; font-weight: 700; display: block; width: 100%; margin-top: 25px;
+            transition: background-color 0.2s, transform 0.1s; box-shadow: 0 4px 6px rgba(26,115,232,0.2);
         }
+        .copy-button:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+        .copy-button:active { transform: translateY(1px); }
+        .copy-help-text { text-align: center; margin-top: 15px; color: #777; font-size: 14px; }
 
-        .copy-button:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-        }
-
-        .copy-button:active {
-            transform: translateY(1px);
-        }
-
-        .copy-help-text {
-            text-align: center;
-            margin-top: 15px;
-            color: #777;
-            font-size: 14px;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 900px) {
-            .content-wrapper {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .main-container {
-                padding: 20px;
-            }
-            .column-right {
-                position: static;
-            }
+            .content-wrapper { flex-direction: column; gap: 30px; }
+            .main-container { padding: 20px; }
+            .column-right { position: static; }
         }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        <h1>Công cụ Tạo Chữ Ký Email - Phú Anh Logistics</h1>
+        <h1>Công cụ Tạo Chữ Ký - Phú Anh Logistics (V2.0)</h1>
 
         <div class="content-wrapper">
             
             <div class="column-left">
                 
-                <div class="form-section-title" style="margin-top: 0;">Thông tin cá nhân</div>
+                <!-- PHẦN CẤU HÌNH NGÔN NGỮ (MỚI) -->
+                <div class="form-section-title" style="margin-top: 0;">Cấu hình Chữ ký</div>
+                <div class="input-card">
+                    <div class="form-group">
+                        <label for="languageSelect">Ngôn ngữ hiển thị (Labels):</label>
+                        <select id="languageSelect" onchange="updateSignature()">
+                            <option value="vi">Tiếng Việt (Mặc định)</option>
+                            <option value="en">Tiếng Anh (English)</option>
+                            <option value="cn">Tiếng Trung (中文)</option>
+                            <option value="vi_en">Song ngữ: Việt / Anh</option>
+                            <option value="vi_cn" selected>Song ngữ: Việt / Trung (Khuyên dùng)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Thông tin cá nhân</div>
                 <div class="input-card">
                     <div class="form-group">
                         <label for="fullName">Họ và Tên:</label>
-                        <input type="text" id="fullName" placeholder="Nhập họ và tên của bạn..." oninput="updateSignature()">
+                        <input type="text" id="fullName" placeholder="Nhập họ và tên..." oninput="updateSignature()">
                     </div>
                     <div class="form-group">
                         <label for="jobTitle">Chức vụ:</label>
@@ -211,9 +101,21 @@
                 <div class="form-section-title">Liên hệ</div>
                 <div class="input-card">
                     <div class="form-group">
-                        <label for="phoneNumberInput">Số điện thoại:</label>
-                        <div class="helper-text">Nhập số thường (ví dụ: 0968...), hệ thống tự chuyển thành +84.</div>
+                        <label for="phoneNumberInput">Số điện thoại / Zalo:</label>
+                        <div class="helper-text">Nhập số thường, hệ thống tự chuyển thành +84.</div>
                         <input type="tel" id="phoneNumberInput" placeholder="Nhập số điện thoại..." oninput="updateSignature()">
+                    </div>
+
+                    <!-- PHẦN WECHAT (MỚI) -->
+                    <div class="form-group">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="wechatToggle" onchange="toggleWechatInput()">
+                            <span>Hiển thị thông tin WeChat?</span>
+                        </label>
+                        <div id="wechatInputGroup" style="display: none; margin-top: 10px;">
+                            <label for="wechatId" style="font-size: 14px;">WeChat ID:</label>
+                            <input type="text" id="wechatId" placeholder="Nhập ID WeChat..." oninput="updateSignature()">
+                        </div>
                     </div>
                 </div>
                 
@@ -221,8 +123,8 @@
                 <div class="input-card">
                     <div class="form-group">
                         <label for="emailPrefix">Email Alias (Phần trước @):</label>
-                        <div class="helper-text">Chỉ cần nhập phần tên, hệ thống tự động thêm đuôi @talunglogistics.com</div>
-                        <input type="text" id="emailPrefix" placeholder="Ví dụ: sales, support, nguyenvana..." oninput="updateSignature()">
+                        <div class="helper-text">Chỉ cần nhập tên, tự động thêm @talunglogistics.com</div>
+                        <input type="text" id="emailPrefix" placeholder="Ví dụ: sales, support..." oninput="updateSignature()">
                     </div>
                 </div>
 
@@ -242,57 +144,130 @@
                         </td>
                       </tr>
                       <tr>
-                        <td valign="top" style="padding-right: 16px;">
+                        <!-- LOGO -->
+                        <td valign="top" style="padding-right: 16px; width: 140px;">
                           <a href="https://www.talunglogistics.com" target="_blank">
-                            <img src="Logo.png" alt="Logo Công ty Phú Anh" width="140" style="display: block; border-radius: 8px;">
+                              <!-- Bạn nhớ thay đường dẫn ảnh Logo thật vào đây -->
+                            <img src="https://via.placeholder.com/140x140.png?text=Logo+Phu+Anh" alt="Logo Công ty Phú Anh" width="140" style="display: block; border-radius: 8px;">
                           </a>
                         </td>
 
-                        <td valign="top" style="border-left: 2px solid #1a73e8; padding-left: 16px; width: 100%;">
+                        <!-- INFO -->
+                        <td valign="top" style="border-left: 2px solid #1a73e8; padding-left: 16px;">
                           <div style="margin-bottom: 8px;">
                             <strong style="font-size: 16px; color: #1a73e8; letter-spacing: 0.3px; font-family: 'Times New Roman', Times, serif;"><span id="sig-fullName" class="placeholder-text">{Họ tên}</span></strong>
                           </div>
+                          
                           <div style="color: #555555; margin-bottom: 2px; font-family: 'Times New Roman', Times, serif;">
-                            Chức vụ: <strong style="color: #222222; font-family: 'Times New Roman', Times, serif;"><span id="sig-jobTitle" class="placeholder-text">{Chức vụ}</span></strong>
-                          </div>
-                          <div style="color: #555555; margin-bottom: 2px; font-family: 'Times New Roman', Times, serif;">
-                            Công ty: <strong style="color: #222222; font-family: 'Times New Roman', Times, serif;">Công ty TNHH Thương mại Vận tải Phú Anh</strong>
-                          </div>
-                          <div style="color: #555555; margin-bottom: 2px; font-family: 'Times New Roman', Times, serif;">
-                            Địa chỉ: <span style="color: #222222; font-family: 'Times New Roman', Times, serif;">Cửa khẩu Quốc tế Tà Lùng, xã Phục Hòa, tỉnh Cao Bằng</span>
+                            <span id="lbl-job">Chức vụ:</span> <strong style="color: #222222;"><span id="sig-jobTitle" class="placeholder-text">{Chức vụ}</span></strong>
                           </div>
                           
-                          <table cellpadding="0" cellspacing="0" style="font-size: 13px; font-family: 'Times New Roman', Times, serif;">
+                          <div style="color: #555555; margin-bottom: 2px; font-family: 'Times New Roman', Times, serif;">
+                            <span id="lbl-company">Công ty:</span> <strong style="color: #222222;">Công ty TNHH Thương mại Vận tải Phú Anh</strong>
+                          </div>
+                          
+                          <div style="color: #555555; margin-bottom: 2px; font-family: 'Times New Roman', Times, serif;">
+                            <span id="lbl-address">Địa chỉ:</span> <span style="color: #222222;">Cửa khẩu Quốc tế Tà Lùng, xã Phục Hòa, tỉnh Cao Bằng</span>
+                          </div>
+                          
+                          <table cellpadding="0" cellspacing="0" style="font-size: 13px; font-family: 'Times New Roman', Times, serif; margin-top: 5px;">
+                            <!-- Điện thoại -->
                             <tr>
-                              <td style="padding-right: 8px; white-space: nowrap;">📞 <strong>Điện thoại:</strong></td>
+                              <td style="padding-right: 8px; white-space: nowrap; width: 20px;">📞</td>
+                              <td style="padding-right: 5px;"><strong id="lbl-tel">Điện thoại:</strong></td>
                               <td><a href="tel:" id="sig-phoneLink" style="color: #1a73e8; text-decoration: none;"> <span id="sig-phoneNumberFormatted" class="placeholder-text">{Số điện thoại}</span></a></td>
                             </tr>
+                            
+                            <!-- Email -->
                             <tr>
-                              <td style="padding-right: 8px;">✉️ <strong>Email:</strong></td>
+                              <td style="padding-right: 8px;">✉️</td>
+                              <td style="padding-right: 5px;"><strong>Email:</strong></td>
                               <td><a href="mailto:" id="sig-emailRealLink" style="color: #1a73e8; text-decoration: none;"> <span id="sig-emailDisplayName" class="placeholder-text">{Email}</span></a></td>
                             </tr>
+
+                            <!-- WeChat (Ẩn mặc định) -->
+                            <tr id="sig-wechatRow" style="display: none;">
+                                <td style="padding-right: 8px;">💬</td>
+                                <td style="padding-right: 5px;"><strong>WeChat:</strong></td>
+                                <td><span id="sig-wechatDisplay" style="color: #333;"></span></td>
+                            </tr>
+
+                            <!-- Website -->
                             <tr>
-                              <td style="padding-right: 8px;">🌐 <strong>Website:</strong></td>
+                              <td style="padding-right: 8px;">🌐</td>
+                              <td style="padding-right: 5px;"><strong id="lbl-web">Website:</strong></td>
                               <td><a href="https://www.talunglogistics.com" target="_blank" style="color: #1a73e8; text-decoration: none;">www.talunglogistics.com</a></td>
                             </tr>
                           </table>
 
                           <div style="margin-top: 16px; font-size: 10px; color: #999999; line-height: 1.4; font-family: 'Times New Roman', Times, serif;">
-                            <em>Hãy cân nhắc môi trường trước khi in email này.</em>
+                            <em id="lbl-disclaimer">Hãy cân nhắc môi trường trước khi in email này.</em>
                           </div>
                         </td>
                       </tr>
                     </table>
-                    </div>
+                </div>
 
                 <button class="copy-button" onclick="copySignature()">SAO CHÉP CHỮ KÝ NGAY</button>
-                <p class="copy-help-text">Sau khi sao chép thành công, hãy dán (Ctrl+V) vào phần cài đặt chữ ký trong Gmail hoặc Outlook của bạn.</p>
+                <p class="copy-help-text">Dán (Ctrl+V) vào cài đặt chữ ký Gmail/Outlook sau khi sao chép.</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Hàm định dạng số điện thoại sang chuẩn +84
+        // 1. DATA NGÔN NGỮ (TỪ ĐIỂN)
+        const langData = {
+            vi: {
+                job: "Chức vụ:",
+                company: "Công ty:",
+                address: "Địa chỉ:",
+                tel: "Điện thoại:",
+                web: "Website:",
+                disclaimer: "Hãy cân nhắc môi trường trước khi in email này."
+            },
+            en: {
+                job: "Position:",
+                company: "Company:",
+                address: "Address:",
+                tel: "Tel:",
+                web: "Website:",
+                disclaimer: "Please consider the environment before printing this email."
+            },
+            cn: {
+                job: "职务:",
+                company: "公司:",
+                address: "地址:",
+                tel: "电话:",
+                web: "网址:",
+                disclaimer: "打印此邮件前请考虑环境。"
+            },
+            vi_en: {
+                job: "Chức vụ / Position:",
+                company: "Công ty / Company:",
+                address: "Địa chỉ / Addr:",
+                tel: "Điện thoại / Tel:",
+                web: "Website:",
+                disclaimer: "Hãy cân nhắc môi trường trước khi in email này / Please consider the environment before printing."
+            },
+            vi_cn: {
+                job: "Chức vụ / 职务:",
+                company: "Công ty / 公司:",
+                address: "Địa chỉ / 地址:",
+                tel: "Điện thoại / 电话:",
+                web: "Website / 网址:",
+                disclaimer: "Hãy cân nhắc môi trường trước khi in email này / 打印此邮件前请考虑环境。"
+            }
+        };
+
+        // Hàm bật/tắt ô nhập WeChat
+        function toggleWechatInput() {
+            const isChecked = document.getElementById('wechatToggle').checked;
+            const inputGroup = document.getElementById('wechatInputGroup');
+            inputGroup.style.display = isChecked ? 'block' : 'none';
+            updateSignature(); // Cập nhật lại chữ ký ngay khi toggle
+        }
+
+        // Hàm định dạng số điện thoại
         function formatPhoneNumberTo84(phoneNumberString) {
             var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
             if (/^0\d{9}$/.test(cleaned)) {
@@ -304,17 +279,31 @@
             return phoneNumberString;
         }
 
-        // Hàm chính: Cập nhật chữ ký
+        // HÀM CHÍNH: CẬP NHẬT CHỮ KÝ
         function updateSignature() {
-            // 1. Lấy giá trị inputs
+            // -- 1. CẬP NHẬT LABEL NGÔN NGỮ --
+            const currentLang = document.getElementById('languageSelect').value;
+            const labels = langData[currentLang];
+            
+            document.getElementById('lbl-job').textContent = labels.job;
+            document.getElementById('lbl-company').textContent = labels.company;
+            document.getElementById('lbl-address').textContent = labels.address;
+            document.getElementById('lbl-tel').textContent = labels.tel;
+            document.getElementById('lbl-web').textContent = labels.web;
+            document.getElementById('lbl-disclaimer').textContent = labels.disclaimer;
+
+            // -- 2. LẤY GIÁ TRỊ INPUT --
             const fullNameInput = document.getElementById('fullName').value.trim();
             const jobTitleInput = document.getElementById('jobTitle').value.trim();
             const rawPhoneInput = document.getElementById('phoneNumberInput').value.trim();
-            // Lấy giá trị Alias mới
             const emailPrefixInput = document.getElementById('emailPrefix').value.trim();
-            const domain = '@talunglogistics.com'; // Đuôi email cố định
+            const wechatIdInput = document.getElementById('wechatId').value.trim();
+            const isWechatEnabled = document.getElementById('wechatToggle').checked;
+            
+            const domain = '@talunglogistics.com';
 
-            // 2. Cập nhật Họ tên & Chức vụ
+            // -- 3. ĐIỀN THÔNG TIN --
+            // Họ tên
             const fullNameSpan = document.getElementById('sig-fullName');
             if (fullNameInput !== '') {
                 fullNameSpan.textContent = fullNameInput;
@@ -324,6 +313,7 @@
                 fullNameSpan.classList.add('placeholder-text');
             }
 
+            // Chức vụ
             const jobTitleSpan = document.getElementById('sig-jobTitle');
             if (jobTitleInput !== '') {
                 jobTitleSpan.textContent = jobTitleInput;
@@ -333,48 +323,48 @@
                 jobTitleSpan.classList.add('placeholder-text');
             }
             
-            // 3. Xử lý Số điện thoại
+            // Số điện thoại
             const phoneSpan = document.getElementById('sig-phoneNumberFormatted');
             const phoneLinkBtn = document.getElementById('sig-phoneLink');
-
             if (rawPhoneInput !== '') {
                 phoneSpan.textContent = " " + formatPhoneNumberTo84(rawPhoneInput);
                 phoneSpan.classList.remove('placeholder-text');
-                
-                let cleanPhoneLink = rawPhoneInput.replace(/\D/g, '');
-                if (cleanPhoneLink.startsWith('0')) cleanPhoneLink = '+84' + cleanPhoneLink.substring(1);
-                else if (cleanPhoneLink.startsWith('84') && !cleanPhoneLink.startsWith('+')) cleanPhoneLink = '+' + cleanPhoneLink;
-                if (!cleanPhoneLink.startsWith('+') && cleanPhoneLink.length > 0) cleanPhoneLink = '+' + cleanPhoneLink;
-                phoneLinkBtn.href = "tel:" + cleanPhoneLink;
+                let cleanPhone = rawPhoneInput.replace(/\D/g, '');
+                // Logic xử lý link tel cơ bản
+                if (cleanPhone.startsWith('0')) cleanPhone = '+84' + cleanPhone.substring(1);
+                phoneLinkBtn.href = "tel:" + cleanPhone;
             } else {
                 phoneSpan.textContent = '{Số điện thoại}';
                 phoneSpan.classList.add('placeholder-text');
                 phoneLinkBtn.href = "tel:";
             }
             
-            // 4. XỬ LÝ EMAIL (LOGIC MỚI)
+            // Email
             const emailDisplayNameSpan = document.getElementById('sig-emailDisplayName');
             const emailRealLinkBtn = document.getElementById('sig-emailRealLink');
-
             if (emailPrefixInput !== '') {
-                // Ghép alias với domain
                 const fullEmail = emailPrefixInput + domain;
-                
-                // Hiển thị email đầy đủ
                 emailDisplayNameSpan.textContent = " " + fullEmail;
                 emailDisplayNameSpan.classList.remove('placeholder-text');
-                
-                // Tạo link mailto
                 emailRealLinkBtn.href = "mailto:" + fullEmail;
             } else {
-                // Nếu chưa nhập
                 emailDisplayNameSpan.textContent = '{Email}';
                 emailDisplayNameSpan.classList.add('placeholder-text');
                 emailRealLinkBtn.href = "mailto:";
             }
+
+            // -- 4. XỬ LÝ WECHAT --
+            const wechatRow = document.getElementById('sig-wechatRow');
+            const wechatDisplay = document.getElementById('sig-wechatDisplay');
+
+            if (isWechatEnabled && wechatIdInput !== '') {
+                wechatRow.style.display = 'table-row'; // Hiển thị dòng
+                wechatDisplay.textContent = " " + wechatIdInput;
+            } else {
+                wechatRow.style.display = 'none'; // Ẩn dòng
+            }
         }
 
-        // Hàm sao chép chữ ký
         function copySignature() {
             const placeholders = document.querySelectorAll('.placeholder-text');
             placeholders.forEach(el => el.classList.remove('placeholder-text'));
@@ -387,18 +377,17 @@
 
             try {
                 const successful = document.execCommand('copy');
-                const msg = successful ? '✅ Đã sao chép thành công! Hãy dán vào cài đặt email của bạn.' : '❌ Không thể sao chép tự động.';
+                const msg = successful ? '✅ Đã sao chép! Hãy dán vào email của bạn.' : '❌ Lỗi sao chép.';
                 alert(msg);
             } catch (err) {
-                alert('❌ Lỗi khi sao chép.');
+                alert('❌ Lỗi trình duyệt.');
             }
             window.getSelection().removeAllRanges();
-
-            updateSignature();
+            updateSignature(); 
         }
         
+        // Khởi chạy lần đầu
         updateSignature();
     </script>
-
 </body>
 </html>
